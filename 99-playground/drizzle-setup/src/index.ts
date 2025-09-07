@@ -2,8 +2,9 @@ import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/libsql';
 import { todos } from './db/schema';
 import {eq} from 'drizzle-orm';
+import {DB_FILE} from '../drizzle.config';
 
-const db = drizzle(process.env.DB_FILE_NAME!);
+const db = drizzle(DB_FILE);
 
 async function main() {
   const firstToDo: typeof todos.$inferInsert = {
@@ -13,8 +14,8 @@ async function main() {
   
   await db.insert(todos).values(firstToDo);
   console.log('New todo created!')
-  const users = await db.select().from(todos);
-  console.log('Getting all todos from the database: ', users)
+  const todoItems = await db.select().from(todos);
+  console.log('Getting all todos from the database: ', todoItems)
 
   await db
     .update(todos)
