@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { drizzle } from 'drizzle-orm/libsql';
+import { drizzle } from 'drizzle-orm/better-sqlite3';
 import { todos } from './db/schema';
 import {eq} from 'drizzle-orm';
 import {DB_FILE} from '../drizzle.config';
@@ -31,8 +31,8 @@ async function main() {
     .where(eq(todos.title, newToDos[0].title));
   console.log('todo item updated!')
 
-  await db.delete(todos).where(eq(todos.title, newToDos[0].title));
-  console.log('todo item deleted!')
-  await db.delete(todos); // delete all
+  // await db.delete(todos).where(eq(todos.title, newToDos[0].title));
+  // console.log('todo item deleted!')
+  // await db.delete(todos); // delete all
 }
 main();
