@@ -1,4 +1,4 @@
-import {fetchTodoById} from '@/db/data-access';
+import {fetchTodoById} from '@/data/data-access';
 
 export default async function ToDoItemScreen({params}: { params: Promise<{ id: string }> }) {
 

@@ -104,6 +104,12 @@ It should support the following routes:
 
 Your task is to implement all these routes as static pages. Each page should contain some sensible content but the content is static and cannot be changed at this point in time.
 
+For styling I suggest using [Tailwind CSS](https://tailwindcss.com/) during this workshop, it is very widely used in the Next.js ecosystem ... but TailwindCSS ia also very controversial in the wieder web-development ecosystem.
+
+Build your own opinion: love it or hate it ...
+
+Next.js offers alternatives for styling: https://nextjs.org/docs/app/getting-started/css
+
 
 
 ## 3. Introduce Components
@@ -159,21 +165,17 @@ Study the script `src/index.ts` and execute it with : `npm run start`
 Install drizle into the project:
 
 ```
-npm i drizzle-orm better-sqlite3
-npm i -D drizzle-kit
+npm i drizzle-orm better-sqlite3 dotenv 
+npm i -D drizzle-kit 
 ```
 
 Copy the `drizzle.config.ts`from the playground proyect into the root of the project.
 
-Create a directory `src/db`.
+Create a directory `src/db` and copy `schema.ts` from the playground project.
 
-Copy `schema.ts` from the playground project.
+Create a file `src/data/data-access.ts`and implement functions to load the pending and completed todos from the db.
 
-Create a file `src/db/data-access.ts`and implement functions to load the pending and completed todos from the db.
-
-
-
-Then use these data access functions in the page components to fetch the todo-items and pass them to the list components for rendering.
+Then use these data-access functions in the page components to fetch the todo-items and pass them to the list components for rendering.
 
 
 
@@ -204,13 +206,13 @@ Find out more here: https://nextjs.org/docs/app/api-reference/file-conventions/r
 
 ## 6. Mutations with Server Functions
 
-Mark the file `data-access.ts` with the directive `'use server';` on the first line. 
+Create a new file, `data/actions.ts` and add the directive `'use server';` as the first line.
 
 Find out more here: https://nextjs.org/docs/app/api-reference/directives/use-server
 
 
 
-Then implement another function that inserts a ToDo-Item:
+Then implement a function that inserts a ToDo-Item:
 
 ```typescript
 export async function insertToDoItem(formData: FormData){
@@ -237,7 +239,7 @@ revalidatePath('/todos');
 
 Find out more here: : https://nextjs.org/docs/app/api-reference/functions/revalidatePath
 
-Attention: The function you created above is effectively transformed in a public HTTP endpoint!
+*Attention:* The function you created above is effectively transformed in a public HTTP endpoint!
 You should always validate client input and check authentication and authorization in these functions.
 
 Find out more here: https://nextjs.org/docs/app/guides/data-security#built-in-server-actions-security-features

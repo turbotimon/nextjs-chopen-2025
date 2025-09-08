@@ -1,31 +1,11 @@
 'use server';
-import {drizzle} from 'drizzle-orm/better-sqlite3';
+
+import {db} from '@/db/instance';
 import {todos} from '@/db/schema';
 import {eq} from 'drizzle-orm';
-import {DB_FILE} from '../../drizzle.config';
+
 import {revalidatePath, revalidateTag} from 'next/cache';
-import type {TodoInsert} from '@/db/types';
-
-
-const db = drizzle(DB_FILE);
-
-
-export async function fetchPendingTodos() {
-  // await new Promise(resolve => setTimeout(resolve, 3000)); // simulate slow response to demonstarte streaming in the todos route
-  const todoItems = await db.select().from(todos).where(eq(todos.completed, false));
-  return todoItems;
-}
-
-export async function fetchCompletedTodos() {
-  const todoItems = await db.select().from(todos).where(eq(todos.completed, true));
-  return todoItems;
-}
-
-export async function fetchTodoById(todoId: number) {
-  const todoItems = await db.select().from(todos).where(eq(todos.id, todoId));
-  return todoItems[0];
-}
-
+import type {TodoInsert} from '@/data/types';
 
 export async function insertToDoItem(formData: FormData) {
   await new Promise(resolve => setTimeout(resolve, 3000)); // simulate slow response to demonstrate the pending state
@@ -41,6 +21,13 @@ export async function insertToDoItem(formData: FormData) {
     success: true,
     error: null,
   };
+}
+
+export async function updateToDoItemAsCompleted(formData: FormData) {
+  // We should validate the data. i.e. with Zod ...
+  const todoId = formData.get('todoId') as string;
+  await db.update(todos).set({completed: true}).where(eq(todos.id, parseInt(todoId)));
+  revalidatePath('/todos');
 }
 
 export async function deleteToDoItem(formData: FormData) {

@@ -1,4 +1,4 @@
-import {insertToDoItem} from '@/db/data-access';
+import {insertToDoItem} from '@/data/actions';
 
 interface NewTodoProps {
 }

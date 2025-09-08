@@ -1,8 +1,10 @@
 import { drizzle } from 'drizzle-orm/better-sqlite3';
 import {todos} from '@/db/schema';
 import {eq} from 'drizzle-orm';
+import {DB_FILE} from '../../drizzle.config';
+import 'server-only';
 
-export const DB_FILE = '../workshop.db';
+
 const db = drizzle(DB_FILE);
 
 
