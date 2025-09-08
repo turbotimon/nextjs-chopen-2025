@@ -171,6 +171,8 @@ Copy `schema.ts` from the playground project.
 
 Create a file `src/db/data-access.ts`and implement functions to load the pending and completed todos from the db.
 
+
+
 Then use these data access functions in the page components to fetch the todo-items and pass them to the list components for rendering.
 
 
@@ -206,6 +208,8 @@ Mark the file `data-access.ts` with the directive `'use server';` on the first l
 
 Find out more here: https://nextjs.org/docs/app/api-reference/directives/use-server
 
+
+
 Then implement another function that inserts a ToDo-Item:
 
 ```typescript
@@ -232,6 +236,11 @@ revalidatePath('/todos');
 ```
 
 Find out more here: : https://nextjs.org/docs/app/api-reference/functions/revalidatePath
+
+Attention: The function you created above is effectively transformed in a public HTTP endpoint!
+You should always validate client input and check authentication and authorization in these functions.
+
+Find out more here: https://nextjs.org/docs/app/guides/data-security#built-in-server-actions-security-features
 
 
 
