@@ -1,31 +1,31 @@
-import {TodoList} from '@/shared/TodoList';
-import {NewTodo} from '@/app/todos/NewTodo';
-import {Suspense} from 'react';
-import {fetchPendingTodos} from '@/data/data-access';
-import {updateToDoItemAsCompleted} from '@/data/actions';
+import { TodoList } from "@/shared/TodoList";
+import { NewTodo } from "@/app/todos/NewTodo";
+import { Suspense } from "react";
+import { fetchPendingTodos } from "@/data/data-access";
+import { updateToDoItemAsCompleted } from "@/data/actions";
 
+import { Time } from "@/app/todos/Time";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default async function TodoScreen() {
-
   return (
     <div className="w-full max-w-2xl px-4 pt-8">
       <h2 className="text-3xl font-bold mb-6">To-Do List</h2>
-      <NewTodo/>
-      <Suspense fallback={<TodoListSkeleton/>}>
-        <ToDoScreenData/>
+      <Time />
+      <NewTodo />
+      <Suspense fallback={<TodoListSkeleton />}>
+        <ToDoScreenData />
       </Suspense>
     </div>
   );
 }
 
 export async function ToDoScreenData() {
-
   const todoItems = await fetchPendingTodos();
-  
+
   return (
-    <TodoList items={todoItems} removeAction={updateToDoItemAsCompleted}/>
+    <TodoList items={todoItems} removeAction={updateToDoItemAsCompleted} />
   );
 }
 
@@ -41,6 +41,3 @@ function TodoListSkeleton() {
     </div>
   );
 }
-
-
-
