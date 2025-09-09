@@ -1,6 +1,6 @@
 import {TodoList} from '@/shared/TodoList';
 import {NewTodo} from '@/app/todos/NewTodo';
-import {fetchPendingTodos} from '@/db/data-access';
+import {fetchPendingTodos} from '@/data/data-access';
 
 export const dynamic = 'force-dynamic';
 

@@ -1,8 +1,8 @@
 import {TodoList} from '@/shared/TodoList';
 import {NewTodo} from '@/app/todos/NewTodo';
-import {fetchPendingTodos} from '@/db/data-access';
 import {Suspense} from 'react';
-
+import {fetchPendingTodos} from '@/data/data-access';
+import {updateToDoItemAsCompleted} from '@/data/actions';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,7 +24,7 @@ export async function ToDoScreenData() {
   const todoItems = await fetchPendingTodos();
   
   return (
-    <TodoList items={todoItems}/>
+    <TodoList items={todoItems} removeAction={updateToDoItemAsCompleted}/>
   );
 }
 

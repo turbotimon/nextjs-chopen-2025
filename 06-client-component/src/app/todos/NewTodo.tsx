@@ -1,25 +1,20 @@
 'use client';
 
 import {useActionState, useState} from 'react';
-import {addRandomToDoItems, insertToDoItem} from '@/db/data-access';
 import clsx from 'clsx';
+import {addRandomToDoItems, insertToDoItem} from '@/data/actions';
 
 export function NewTodo() {
 
   const [newTodoTitle, setNewTodoTitle] = useState('');
-
-  function addNewTodo(formData: FormData) {
-    insertToDoItem(formData);
-    // setNewTodoTitle('');
-  }
-
-  async function myInsertToDoItem(prevState: any, formData: FormData) {
+  
+  async function addNewTodo(prevState: any, formData: FormData) {
     const result = await insertToDoItem(formData);
     setNewTodoTitle('')
     return result
   }
 
-  const [formState, saveNewToDo, pending] = useActionState(myInsertToDoItem, {success: false, error: null});
+  const [formState, saveNewToDo, pending] = useActionState(addNewTodo, {success: false, error: null});
 
 
   const enableAddButton = !pending && newTodoTitle.trim().length > 2;
@@ -47,7 +42,7 @@ export function NewTodo() {
                 : "bg-blue-600 text-white hover:bg-blue-700"
             )}
           >
-            Add
+            {pending ? 'Saving' : 'Add'}
           </button>
         </form>
         <button

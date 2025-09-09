@@ -1,5 +1,5 @@
 import {TodoList} from '@/shared/TodoList';
-import {fetchCompletedTodos} from '@/db/data-access';
+import {fetchCompletedTodos} from '@/data/data-access';
 
 export const dynamic = 'force-dynamic';
 

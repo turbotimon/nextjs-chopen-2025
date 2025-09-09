@@ -1,0 +1,7 @@
+.wrapper {
+  min-height: 600px;
+  min-width: 500px;
+  border: 4px dashed orange;
+  padding: 30px;
+  /*background-color: cyan;*/
+}
