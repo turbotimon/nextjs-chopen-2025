@@ -1,3 +1,11 @@
+import { Todo } from '../../data/Todo';
+
+const todos: Todo[] = [
+  { id: '1', title: 'Buy groceries1', completed: false },
+  { id: '2', title: 'Call dentist1', completed: true },
+  { id: '3', title: 'Fix the bike1', completed: false },
+];
+
 export default async function TodoScreen() {
   return (
     <div className="w-full max-w-2xl px-4 pt-8">
@@ -26,21 +34,22 @@ export async function NewTodoForm() {
     )
 }
 
-export async function TodoList() {
-  return (
-          <div className="space-y-4">
-        <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
-          <span className="text-lg">Buy groceries</span>
-          <button className="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md transition">Remove</button>
-        </div>
-        <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
-          <span className="text-lg">Call dentist</span>
-          <button className="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md transition">Remove</button>
-        </div>
-        <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
-          <span className="text-lg">Fix the bike</span>
-          <button className="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md transition">Remove</button>
-        </div>
-      </div>
-  )
+export async function TodoList(todos: Todo[]) {
+  // return (
+  //         <div className="space-y-4">
+  //       <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
+  //         <span className="text-lg">Buy groceries</span>
+  //         <button className="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md transition">Remove</button>
+  //       </div>
+  //       <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
+  //         <span className="text-lg">Call dentist</span>
+  //         <button className="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md transition">Remove</button>
+  //       </div>
+  //       <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
+  //         <span className="text-lg">Fix the bike</span>
+  //         <button className="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md transition">Remove</button>
+  //       </div>
+  //     </div>
+  // )
+  
 }

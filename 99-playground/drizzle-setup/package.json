@@ -17,7 +17,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@libsql/client": "^0.15.14",
     "better-sqlite3": "^12.2.0",
     "dotenv": "^17.2.2",
     "drizzle-orm": "^0.44.5"
