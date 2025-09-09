@@ -1,9 +1,16 @@
 export default async function TodoScreen() {
   return (
-    
     <div className="w-full max-w-2xl px-4 pt-8">
       <h2 className="text-3xl font-bold mb-6">To-Do List</h2>
-      <form className="flex gap-4 mb-6">
+        <NewTodoForm />
+        <TodoList />
+    </div>
+  );
+}
+
+export async function NewTodoForm() {
+    return (
+    <form className="flex gap-4 mb-6">
         <input
           type="text"
           placeholder="Enter a new todo"
@@ -16,7 +23,12 @@ export default async function TodoScreen() {
           Add
         </button>
       </form>
-      <div className="space-y-4">
+    )
+}
+
+export async function TodoList() {
+  return (
+          <div className="space-y-4">
         <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
           <span className="text-lg">Buy groceries</span>
           <button className="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md transition">Remove</button>
@@ -30,6 +42,5 @@ export default async function TodoScreen() {
           <button className="px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md transition">Remove</button>
         </div>
       </div>
-    </div>
-  );
+  )
 }
